@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="drawing"
+            type="in.getpowerplay.assignment.source.model.Drawing" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_margin="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/drawingImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:transitionName="@string/drawing" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/textLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/drawingName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{drawing.name}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/drawingTimeAdded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{drawing.timeAdded}"
+                android:textSize="14sp"
+                tools:text="Date" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+</layout>

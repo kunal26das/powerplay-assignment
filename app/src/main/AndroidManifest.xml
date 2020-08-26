@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.getpowerplay.assignment">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:name=".Assignment"
@@ -13,7 +15,7 @@
         android:theme="@style/DayNightStyle"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.DrawingActivity" />
+        <activity android:name=".ui.MarkerActivity" />
     </application>
 
 </manifest>

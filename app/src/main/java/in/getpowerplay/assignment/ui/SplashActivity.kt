@@ -1,7 +1,7 @@
-package `in`.getpowerplay.assignment.ui.splash
+package `in`.getpowerplay.assignment.ui
 
 import `in`.getpowerplay.assignment.R
-import `in`.getpowerplay.assignment.ui.main.MainActivity
+import `in`.getpowerplay.assignment.mvvm.SplashViewModel
 import android.content.Intent
 import android.os.Bundle
 import androidx.essentials.core.ui.Activity
@@ -20,7 +20,7 @@ class SplashActivity : Activity() {
             override fun onChanged(it: FirebaseUser?) {
                 if (it != null) {
                     viewModel.currentUser.removeObserver(this)
-                    Intent(baseContext, MainActivity::class.java).apply {
+                    Intent(baseContext, DrawingActivity::class.java).apply {
                         startActivity(this)
                         finish()
                     }

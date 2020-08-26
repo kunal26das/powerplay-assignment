@@ -1,4 +1,4 @@
-package `in`.getpowerplay.assignment.ui.splash
+package `in`.getpowerplay.assignment.mvvm
 
 import androidx.essentials.core.mvvm.ViewModel
 import androidx.lifecycle.MutableLiveData
