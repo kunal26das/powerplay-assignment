@@ -1,5 +1,6 @@
-package `in`.getpowerplay.assignment
+package `in`.getpowerplay.assignment.ui
 
+import `in`.getpowerplay.assignment.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
