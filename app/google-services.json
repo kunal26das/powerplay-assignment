@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "383537221787",
+    "firebase_url": "https://powerplay-532e1.firebaseio.com",
+    "project_id": "powerplay-532e1",
+    "storage_bucket": "powerplay-532e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383537221787:android:660cd0caa2cc98f75eb63e",
+        "android_client_info": {
+          "package_name": "in.getpowerplay.assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383537221787-meaj3oahvkvsgh751k9cs66irsf4a62q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.getpowerplay.assignment",
+            "certificate_hash": "34406089acf239433f0297ce2bc2d1b42fe7039e"
+          }
+        },
+        {
+          "client_id": "383537221787-6oulm71uasbs9p7aeobpig3jh51nqsm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXUxJUa8wPXeytFNwwU3V6U_G4138KNLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383537221787-6oulm71uasbs9p7aeobpig3jh51nqsm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
