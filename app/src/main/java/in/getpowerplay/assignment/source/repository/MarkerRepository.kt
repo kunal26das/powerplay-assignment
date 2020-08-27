@@ -17,7 +17,7 @@ class MarkerRepository {
     fun postMarker(idToken: String, drawing: Drawing, marker: Marker) =
         service.postMarker(drawing.id!!, idToken, marker)
 
-    fun deletemarker(idToken: String, drawing: Drawing, marker: Marker) =
+    fun deleteMarker(idToken: String, drawing: Drawing, marker: Marker) =
         service.deleteMarker(drawing.id!!, marker.id!!, idToken)
 
 }

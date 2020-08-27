@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="marker"
+            type="in.getpowerplay.assignment.source.model.Marker" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_global">
+
+            <androidx.essentials.io.TextInput
+                android:id="@+id/markerTitle"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_global"
+                android:hint="@string/title"
+                app:mandatory="true"
+                app:text="@={marker.title}" />
+
+            <androidx.essentials.io.TextInput
+                android:id="@+id/markerDescription"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_global"
+                android:hint="@string/description"
+                app:text="@={marker.description}" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_global"
+                android:orientation="horizontal">
+
+                <androidx.essentials.io.TextInput
+                    android:id="@+id/markerAbscissa"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_global"
+                    android:layout_weight="1"
+                    android:hint="@string/x"
+                    app:editable="false"
+                    app:text="@{String.valueOf(marker.x)}" />
+
+                <androidx.essentials.io.TextInput
+                    android:id="@+id/markerOrdinate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/y"
+                    app:editable="false"
+                    app:text="@{String.valueOf(marker.y)}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addMarkerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/add_marker"
+                app:backgroundTint="@color/colorOnBackground" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

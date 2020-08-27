@@ -6,16 +6,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Marker(
-    var id: String?,
+    var id: String? = null,
 
     @SerializedName("title")
-    val title: String,
+    var title: String = "",
 
     @SerializedName("description")
-    val description: String,
+    var description: String = "",
 
     @SerializedName("time_created")
-    val timeCreated: String,
+    val timeCreated: String = "",
 
     @SerializedName("abscissa")
     val x: Float,

@@ -44,6 +44,9 @@ class MarkerViewModel : ViewModel() {
     }
 
     fun postMarkers(drawing: Drawing, marker: Marker) {
+        if (marker.description.isBlank()) {
+            marker.description = "No Description"
+        }
         compositeDisposable.add(
             markerRepository.postMarker(idToken.value!!, drawing, marker)
                 .subscribeOn(Schedulers.io())
@@ -56,7 +59,7 @@ class MarkerViewModel : ViewModel() {
 
     fun deleteMarker(drawing: Drawing, marker: Marker) {
         compositeDisposable.add(
-            markerRepository.deletemarker(idToken.value!!, drawing, marker)
+            markerRepository.deleteMarker(idToken.value!!, drawing, marker)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

@@ -15,7 +15,7 @@
             android:transitionName="@string/drawing" />
 
         <androidx.essentials.backdrop.BottomSheetView
-            android:id="@+id/bottomSheet"
+            android:id="@+id/markersBottomSheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="@dimen/radius_bottom_sheet"

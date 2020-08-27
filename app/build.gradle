@@ -78,6 +78,7 @@ dependencies {
 
     // Essentials
     dependencies {
+        implementation 'androidx.essentials:io:1596425581820'
         implementation 'androidx.essentials:list:1597954788292'
         implementation 'androidx.essentials:events:1595854371850'
         implementation 'androidx.essentials:firebase:1597419031842'

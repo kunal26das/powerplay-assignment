@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
-import androidx.essentials.core.injector.KoinComponent.inject
 import androidx.essentials.core.ui.Activity
 import androidx.essentials.events.Events
 import com.davemorrissey.labs.subscaleview.ImageSource
@@ -22,14 +21,16 @@ class MarkerActivity : Activity() {
 
     private lateinit var drawing: Drawing
     override val layout = R.layout.activity_marker
-    override val viewModel by inject<MarkerViewModel>()
+    private val addMarkerFragment = AddMarkerFragment()
+    override val viewModel by viewModel<MarkerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         drawing = intent?.getParcelableExtra(getString(R.string.drawing))!!
-        markers.setOnMarkerClickListener {
-            bottomSheet.hide()
-        }
+        addMarkerFragment.arguments = Bundle()
+        addMarkerFragment.arguments?.putParcelable(
+            getString(R.string.drawing), drawing
+        )
         loadDrawing()
     }
 
@@ -45,7 +46,8 @@ class MarkerActivity : Activity() {
         }
         Events.subscribe(Marker::class.java) {
             viewModel.getMarkers(drawing)
-            bottomSheet.expand()
+            markersBottomSheet.expand()
+            addMarkerFragment.dismiss()
         }
     }
 
@@ -53,25 +55,21 @@ class MarkerActivity : Activity() {
         val gestureDetector =
             GestureDetector(baseContext, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                    bottomSheet.expand()
+                    markersBottomSheet.expand()
                     return true
                 }
 
                 override fun onDoubleTap(e: MotionEvent): Boolean {
                     drawingImage.viewToSourceCoord(e.x, e.y)?.let {
-                        viewModel.postMarkers(
-                            drawing, Marker(
-                                null,
-                                "Sample Marker",
-                                "Description",
-                                "Time Created",
-                                it.x, it.y
-                            )
+                        addMarkerFragment.arguments?.putParcelable(
+                            getString(R.string.marker), Marker(x = it.x, y = it.y)
                         )
+                        addMarkerFragment.show(supportFragmentManager, null)
                     }
                     return true
                 }
             })
+
         Picasso.get().load(drawing.url).into(object : Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                 drawingImage.setImage(ImageSource.bitmap(bitmap!!))

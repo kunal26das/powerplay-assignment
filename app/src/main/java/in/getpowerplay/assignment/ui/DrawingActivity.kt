@@ -5,7 +5,6 @@ import `in`.getpowerplay.assignment.mvvm.DrawingViewModel
 import `in`.getpowerplay.assignment.source.model.Drawing
 import android.content.Intent
 import android.os.Bundle
-import androidx.essentials.core.injector.KoinComponent.inject
 import androidx.essentials.core.ui.Activity
 import androidx.essentials.events.Events
 import kotlinx.android.synthetic.main.activity_drawing.*
@@ -13,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_drawing.*
 class DrawingActivity : Activity() {
 
     override val layout = R.layout.activity_drawing
-    override val viewModel by inject<DrawingViewModel>()
+    override val viewModel by viewModel<DrawingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

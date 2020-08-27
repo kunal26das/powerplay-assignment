@@ -6,12 +6,11 @@ import android.content.Intent
 import androidx.essentials.core.ui.Activity
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseUser
-import org.koin.android.ext.android.inject
 
 class SplashActivity : Activity() {
 
     override val layout = R.layout.activity_splash
-    override val viewModel by inject<SplashViewModel>()
+    override val viewModel by viewModel<SplashViewModel>()
 
     override fun initObservers() {
         viewModel.currentUser.observe(this, object : Observer<FirebaseUser?> {
