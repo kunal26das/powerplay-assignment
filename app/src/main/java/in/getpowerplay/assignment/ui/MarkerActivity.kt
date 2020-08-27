@@ -5,6 +5,7 @@ import `in`.getpowerplay.assignment.mvvm.MarkerViewModel
 import `in`.getpowerplay.assignment.source.model.Drawing
 import `in`.getpowerplay.assignment.source.model.Marker
 import android.graphics.Bitmap
+import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.GestureDetector
@@ -37,6 +38,9 @@ class MarkerActivity : Activity() {
             viewModel.getMarkers(drawing)
         }
         viewModel.markers.observe {
+            drawingImage.markers = it?.map {
+                PointF(it.x, it.y)
+            }?.toMutableList() ?: mutableListOf()
             markers.submitList(it)
         }
         Events.subscribe(Marker::class.java) {
@@ -48,6 +52,11 @@ class MarkerActivity : Activity() {
     private fun loadDrawing() {
         val gestureDetector =
             GestureDetector(baseContext, object : GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+                    bottomSheet.expand()
+                    return true
+                }
+
                 override fun onDoubleTap(e: MotionEvent): Boolean {
                     drawingImage.viewToSourceCoord(e.x, e.y)?.let {
                         viewModel.postMarkers(

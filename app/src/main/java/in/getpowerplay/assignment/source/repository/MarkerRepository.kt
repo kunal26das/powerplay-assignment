@@ -10,10 +10,14 @@ class MarkerRepository {
 
     private val retrofit by inject<Retrofit>()
     private val service = retrofit.create(MarkerService::class.java)
+
     fun getMarkers(idToken: String, drawing: Drawing) =
         service.getMarkers(drawing.id!!, idToken)
 
     fun postMarker(idToken: String, drawing: Drawing, marker: Marker) =
         service.postMarker(drawing.id!!, idToken, marker)
+
+    fun deletemarker(idToken: String, drawing: Drawing, marker: Marker) =
+        service.deleteMarker(drawing.id!!, marker.id!!, idToken)
 
 }

@@ -19,4 +19,11 @@ interface MarkerService {
         @Body marker: Marker
     ): Single<Any>
 
+    @DELETE("/drawings/{drawing_id}/markers/{marker_id}.json")
+    fun deleteMarker(
+        @Path("drawing_id") drawingId: String,
+        @Path("marker_id") markerId: String,
+        @Query("auth") idToken: String
+    ): Single<Any>
+
 }

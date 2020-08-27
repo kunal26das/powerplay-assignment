@@ -53,7 +53,6 @@ class DrawingView @JvmOverloads constructor(
                         )
                         val antiDominantColor = -16777215 - dominantColor
                         drawingTimeAdded.setTextColor(antiDominantColor)
-                        drawingMarkers.setTextColor(antiDominantColor)
                         drawingName.setTextColor(antiDominantColor)
                     }
 

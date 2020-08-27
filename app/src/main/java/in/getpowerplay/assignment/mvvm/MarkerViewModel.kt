@@ -54,6 +54,17 @@ class MarkerViewModel : ViewModel() {
         )
     }
 
+    fun deleteMarker(drawing: Drawing, marker: Marker) {
+        compositeDisposable.add(
+            markerRepository.deletemarker(idToken.value!!, drawing, marker)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Events.publish(marker)
+                }, {})
+        )
+    }
+
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()

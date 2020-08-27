@@ -39,13 +39,6 @@
                 tools:text="Name" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/drawingMarkers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                tools:text="Markers added: 0" />
-
-            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/drawingTimeAdded"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
