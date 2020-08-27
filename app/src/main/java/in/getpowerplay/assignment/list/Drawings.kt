@@ -14,6 +14,7 @@ class Drawings(
     attrs: AttributeSet? = null
 ) : List<Drawing, ItemDrawingBinding>(context, attrs) {
 
+    override val emptyMessage = "No drawings added yet"
     private var onDrawingClickListener: OnDrawingClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup): ListItemView.ViewHolder<Drawing, ItemDrawingBinding> {

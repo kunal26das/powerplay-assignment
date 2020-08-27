@@ -79,6 +79,7 @@ dependencies {
     // Essentials
     dependencies {
         implementation 'androidx.essentials:list:1597954788292'
+        implementation 'androidx.essentials:events:1595854371850'
         implementation 'androidx.essentials:firebase:1597419031842'
         implementation 'androidx.essentials:backdrop:1597220063305'
         implementation 'androidx.essentials:resources:1597424018860'
@@ -108,6 +109,11 @@ dependencies {
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
         implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
         implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+    }
+
+    // 3rd Party
+    dependencies {
+        implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
     }
 
     // Testing

@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_margin="16dp">
+        tools:layout_margin="@dimen/margin_global">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/drawingImage"
@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/padding_global">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/drawingName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,13 +38,19 @@
                 android:textStyle="bold"
                 tools:text="Name" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/drawingMarkers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                tools:text="Markers added: 0" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/drawingTimeAdded"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{drawing.timeAdded}"
                 android:textSize="14sp"
-                tools:text="Date" />
+                tools:text="Added few minutes ago" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 

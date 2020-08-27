@@ -4,6 +4,8 @@ import `in`.getpowerplay.assignment.mvvm.DrawingViewModel
 import `in`.getpowerplay.assignment.mvvm.MarkerViewModel
 import `in`.getpowerplay.assignment.mvvm.SplashViewModel
 import `in`.getpowerplay.assignment.source.repository.DrawingRepository
+import `in`.getpowerplay.assignment.source.repository.MarkerRepository
+import androidx.essentials.events.Events
 import androidx.essentials.firebase.FirebaseApplication
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -55,6 +57,12 @@ class Assignment : FirebaseApplication() {
 
     private fun initRepositories() {
         single { DrawingRepository() }
+        single { MarkerRepository() }
+    }
+
+    override fun onTerminate() {
+        Events.clear()
+        super.onTerminate()
     }
 
 }

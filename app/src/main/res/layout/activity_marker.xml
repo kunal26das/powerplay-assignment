@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.SplashActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <in.getpowerplay.assignment.view.PinView
             android:id="@+id/drawingImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:transitionName="@string/drawing" />
 
         <androidx.essentials.backdrop.BottomSheetView
@@ -22,7 +22,17 @@
             app:cardElevation="@dimen/elevation_bottom_sheet"
             app:draggable="true"
             app:hideable="true"
-            app:state="collapsed" />
+            app:peekHeight="0dp"
+            app:state="hidden">
+
+            <in.getpowerplay.assignment.list.Markers
+                android:id="@+id/markers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:item_marginHorizontal="@dimen/margin_global"
+                app:item_marginVertical="@dimen/margin_global"
+                tools:listitem="@layout/item_marker" />
+        </androidx.essentials.backdrop.BottomSheetView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

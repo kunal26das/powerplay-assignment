@@ -6,6 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Drawing(
+    var id: String?,
+
     @SerializedName("name")
     val name: String,
 
@@ -13,8 +15,5 @@ data class Drawing(
     val timeAdded: String,
 
     @SerializedName("url")
-    val url: String,
-
-    @SerializedName("markers")
-    val markers: List<Marker>?
+    val url: String
 ) : Parcelable

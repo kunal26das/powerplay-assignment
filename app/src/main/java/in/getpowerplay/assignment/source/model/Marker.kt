@@ -6,6 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Marker(
+    var id: String?,
+
     @SerializedName("title")
     val title: String,
 
@@ -13,5 +15,11 @@ data class Marker(
     val description: String,
 
     @SerializedName("time_created")
-    val timeCreated: String
+    val timeCreated: String,
+
+    @SerializedName("abscissa")
+    val x: Float,
+
+    @SerializedName("ordinate")
+    val y: Float
 ) : Parcelable

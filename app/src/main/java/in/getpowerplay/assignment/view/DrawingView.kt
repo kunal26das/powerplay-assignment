@@ -40,6 +40,7 @@ class DrawingView @JvmOverloads constructor(
         binding.apply {
             drawing = item
             executePendingBindings()
+            drawingTimeAdded.text = "Added few minutes ago"
             Picasso.get().load(item.url)
                 .into(drawingImage, object : Callback {
                     override fun onSuccess() {
@@ -52,6 +53,7 @@ class DrawingView @JvmOverloads constructor(
                         )
                         val antiDominantColor = -16777215 - dominantColor
                         drawingTimeAdded.setTextColor(antiDominantColor)
+                        drawingMarkers.setTextColor(antiDominantColor)
                         drawingName.setTextColor(antiDominantColor)
                     }
 
