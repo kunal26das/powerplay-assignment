@@ -49,8 +49,7 @@ class DrawingActivity : Activity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_PICK_DRAWING
-            && resultCode == RESULT_OK
-            && data != null
+            && resultCode == RESULT_OK && data != null
         ) {
             addDrawingFragment.arguments?.putParcelable(getString(R.string.drawing), data.data)
             addDrawingFragment.show(supportFragmentManager, null)

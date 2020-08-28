@@ -19,20 +19,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_global">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/drawingImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_global" />
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
 
             <androidx.essentials.io.TextInput
                 android:id="@+id/drawingName"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_global"
+                android:layout_marginVertical="@dimen/margin_global"
                 android:hint="@string/name"
                 app:mandatory="true"
                 app:text="@={drawing.name}" />
@@ -41,7 +43,6 @@
                 android:id="@+id/addDrawingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginBottom="@dimen/margin_global"
                 android:text="@string/add_drawing"
                 android:visibility="gone"
                 app:backgroundTint="@color/colorOnBackground"

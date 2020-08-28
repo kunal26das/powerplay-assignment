@@ -55,7 +55,10 @@ class MarkerActivity : Activity() {
         val gestureDetector =
             GestureDetector(baseContext, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                    markersBottomSheet.expand()
+                    if (true) {
+                        // TODO Check if coordinate is marked
+                        markersBottomSheet.expand()
+                    }
                     return true
                 }
 
