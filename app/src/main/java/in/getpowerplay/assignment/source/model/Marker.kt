@@ -1,5 +1,6 @@
 package `in`.getpowerplay.assignment.source.model
 
+import `in`.getpowerplay.assignment.utils.Calendar.currentDate
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -15,7 +16,7 @@ data class Marker(
     var description: String = "",
 
     @SerializedName("time_created")
-    val timeCreated: String = "",
+    val timeCreated: String = currentDate,
 
     @SerializedName("abscissa")
     val x: Float,

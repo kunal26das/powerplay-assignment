@@ -5,6 +5,7 @@ import `in`.getpowerplay.assignment.mvvm.DrawingViewModel
 import `in`.getpowerplay.assignment.source.model.Drawing
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.essentials.core.ui.Activity
 import androidx.essentials.events.Events
 import kotlinx.android.synthetic.main.activity_drawing.*
@@ -12,19 +13,17 @@ import kotlinx.android.synthetic.main.activity_drawing.*
 class DrawingActivity : Activity() {
 
     override val layout = R.layout.activity_drawing
+    private val addDrawingFragment = AddDrawingFragment()
     override val viewModel by viewModel<DrawingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postDrawingFab.setOnClickListener {
-            viewModel.postDrawing(
-                Drawing(
-                    null,
-                    "Sample Drawing",
-                    "Time Added",
-                    "$URL"
-                )
-            )
+        addDrawingFragment.arguments = Bundle()
+        addDrawingButton.setOnClickListener {
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+                type = "image/*"
+                startActivityForResult(this, REQUEST_CODE_PICK_DRAWING)
+            }
         }
         drawings.setOnDrawingClickListener {
             Intent(this, MarkerActivity::class.java).apply {
@@ -42,13 +41,23 @@ class DrawingActivity : Activity() {
             drawings.submitList(it)
         }
         Events.subscribe(Drawing::class.java) {
+            addDrawingFragment.dismiss()
             viewModel.getDrawings()
         }
     }
 
-    companion object {
-        private const val URL =
-            "https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F51be4238-9686-46e7-bd24-e5ac79a9bd51%2Fbasement_image.jpg?table=block&id=9d6d10e6-73a8-439f-8f68-39ea2524c372&width=960&userId=&cache=v2"
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_PICK_DRAWING
+            && resultCode == RESULT_OK
+            && data != null
+        ) {
+            addDrawingFragment.arguments?.putParcelable(getString(R.string.drawing), data.data)
+            addDrawingFragment.show(supportFragmentManager, null)
+        }
     }
 
+    companion object {
+        private const val REQUEST_CODE_PICK_DRAWING = 101
+    }
 }

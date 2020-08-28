@@ -10,7 +10,9 @@ class SplashViewModel : ViewModel() {
     val currentUser = MutableLiveData(firebaseAuth.currentUser)
 
     init {
-        firebaseAuth.signInAnonymously()
+        firebaseAuth.signInAnonymously().addOnSuccessListener {
+            currentUser.value = it.user
+        }
     }
 
 }

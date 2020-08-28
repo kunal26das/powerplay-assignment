@@ -7,9 +7,11 @@ import androidx.essentials.core.mvvm.ViewModel
 import androidx.essentials.events.Events
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.*
 
 class DrawingViewModel : ViewModel() {
 
@@ -17,6 +19,7 @@ class DrawingViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val compositeDisposable = CompositeDisposable()
     val drawings = MutableLiveData<List<Drawing>>(null)
+    private val firebaseStorage = FirebaseStorage.getInstance()
     private val drawingRepository by inject<DrawingRepository>()
 
     init {
@@ -32,7 +35,11 @@ class DrawingViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    it.forEach { it.value.id = it.key }
+                    it.forEach {
+                        it.value.id = it.key
+                        it.value.url =
+                            "https://firebasestorage.googleapis.com${it.value.url}?alt=media"
+                    }
                     drawings.value = it.values.toList()
                 }, {
                     drawings.value = emptyList()
@@ -40,13 +47,22 @@ class DrawingViewModel : ViewModel() {
         )
     }
 
-    fun postDrawing(drawing: Drawing) {
-        drawingRepository.postDrawing(idToken.value!!, drawing)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Events.publish(drawing)
-            }, {})
+    fun postDrawing(drawing: Drawing, drawingImage: ByteArray) {
+        firebaseStorage.reference.child("${UUID.randomUUID()}.jpg").apply {
+            putBytes(drawingImage).addOnSuccessListener {
+                downloadUrl.addOnSuccessListener {
+                    drawing.url = it.path!!
+                    compositeDisposable.add(
+                        drawingRepository.postDrawing(idToken.value!!, drawing)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                Events.publish(drawing)
+                            }, {})
+                    )
+                }
+            }
+        }
     }
 
     override fun onCleared() {

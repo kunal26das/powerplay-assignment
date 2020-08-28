@@ -18,7 +18,7 @@
             android:id="@+id/markersBottomSheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="@dimen/radius_bottom_sheet"
+            app:cardCornerRadius="0dp"
             app:cardElevation="@dimen/elevation_bottom_sheet"
             app:draggable="true"
             app:hideable="true"

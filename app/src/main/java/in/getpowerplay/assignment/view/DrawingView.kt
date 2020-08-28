@@ -6,7 +6,9 @@ import `in`.getpowerplay.assignment.source.model.Drawing
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.graphics.drawable.toBitmap
 import androidx.essentials.list.AbstractList.Companion.DEFAULT_ORIENTATION
@@ -36,12 +38,13 @@ class DrawingView @JvmOverloads constructor(
         LayoutInflater.from(context), this, attachToRoot
     )
 
-    override fun bind(item: Drawing) {
+    public override fun bind(item: Drawing) {
         binding.apply {
             drawing = item
             executePendingBindings()
-            drawingTimeAdded.text = "Added few minutes ago"
-            Picasso.get().load(item.url)
+            drawingTimeAdded.text = item.timeAdded
+            Log.d("Url", item.url)
+            Picasso.get().load(Uri.parse(item.url))
                 .into(drawingImage, object : Callback {
                     override fun onSuccess() {
                         val dominantColor =
