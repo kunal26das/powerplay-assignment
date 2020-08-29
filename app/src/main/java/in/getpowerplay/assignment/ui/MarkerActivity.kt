@@ -31,6 +31,9 @@ class MarkerActivity : Activity() {
         addMarkerFragment.arguments?.putParcelable(
             getString(R.string.drawing), drawing
         )
+        showMarkersButton.setOnClickListener {
+            markersBottomSheet.expand()
+        }
         loadDrawing()
     }
 
@@ -57,7 +60,7 @@ class MarkerActivity : Activity() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                     if (true) {
                         // TODO Check if coordinate is marked
-                        markersBottomSheet.expand()
+//                        markersBottomSheet.expand()
                     }
                     return true
                 }
