@@ -8,7 +8,6 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.graphics.drawable.toBitmap
 import androidx.essentials.list.AbstractList.Companion.DEFAULT_ORIENTATION
@@ -43,8 +42,8 @@ class DrawingView @JvmOverloads constructor(
             drawing = item
             executePendingBindings()
             drawingTimeAdded.text = item.timeAdded
-            Log.d("Url", item.url)
             Picasso.get().load(Uri.parse(item.url))
+                .placeholder(R.drawable.ic_anchor_36dp)
                 .into(drawingImage, object : Callback {
                     override fun onSuccess() {
                         val dominantColor =
