@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.essentials.core.ui.Activity
@@ -58,19 +59,28 @@ class MarkerActivity : Activity() {
         val gestureDetector =
             GestureDetector(baseContext, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                    if (true) {
-                        // TODO Check if coordinate is marked
-//                        markersBottomSheet.expand()
+                    e?.apply {
+                        drawingImage.viewToSourceCoord(e.x, e.y)?.let { center ->
+                            viewModel.markers.value?.let { markers ->
+                                for (marker in markers) {
+                                    if (drawingImage.isInside(
+                                            center,
+                                            PointF(marker.x, marker.y)
+                                        )
+                                    ) {
+                                        showAddMarkerFragment(marker)
+                                        break
+                                    }
+                                }
+                            }
+                        }
                     }
-                    return true
+                    return e != null
                 }
 
                 override fun onDoubleTap(e: MotionEvent): Boolean {
                     drawingImage.viewToSourceCoord(e.x, e.y)?.let {
-                        addMarkerFragment.arguments?.putParcelable(
-                            getString(R.string.marker), Marker(x = it.x, y = it.y)
-                        )
-                        addMarkerFragment.show(supportFragmentManager, null)
+                        showAddMarkerFragment(Marker(x = it.x, y = it.y), true)
                     }
                     return true
                 }
@@ -91,6 +101,20 @@ class MarkerActivity : Activity() {
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
             }
         })
+    }
+
+    private fun showAddMarkerFragment(marker: Marker, isEditable: Boolean = false) {
+        addMarkerFragment.arguments?.putBoolean(
+            getString(R.string.editable), isEditable
+        )
+        addMarkerFragment.arguments?.putParcelable(
+            getString(R.string.marker), marker
+        )
+        try {
+            addMarkerFragment.show(supportFragmentManager, null)
+        } catch (e: IllegalStateException) {
+            Log.e("IllegalStateException", "Fragment already added")
+        }
     }
 
 }

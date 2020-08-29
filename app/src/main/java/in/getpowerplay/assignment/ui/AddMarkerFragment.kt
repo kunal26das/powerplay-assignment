@@ -16,6 +16,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class AddMarkerFragment : BottomSheetDialogFragment() {
 
+    private var isEditable = false
     private lateinit var marker: Marker
     private lateinit var drawing: Drawing
     private lateinit var binding: FragmentAddMarkerBinding
@@ -24,6 +25,7 @@ class AddMarkerFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
+        isEditable = arguments?.getBoolean(getString(R.string.editable)) ?: false
         drawing = arguments?.getParcelable(getString(R.string.drawing))!!
         marker = arguments?.getParcelable(getString(R.string.marker))!!
     }
@@ -41,6 +43,12 @@ class AddMarkerFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        markerTitle.isEditable = isEditable
+        markerDescription.isEditable = isEditable
+        addMarkerButton.visibility = when (isEditable) {
+            true -> View.VISIBLE
+            else -> View.GONE
+        }
         addMarkerButton.setOnClickListener {
             if (markerTitle.isValid) {
                 viewModel.postMarkers(drawing, marker)

@@ -10,4 +10,5 @@
     <string name="pick_drawing">Pick Drawing</string>
     <string name="name">Name</string>
     <string name="add_drawing">Add Drawing</string>
+    <string name="editable">Editable</string>
 </resources>
