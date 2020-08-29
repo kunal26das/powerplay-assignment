@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_add_marker.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -22,6 +23,7 @@ class AddMarkerFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         drawing = arguments?.getParcelable(getString(R.string.drawing))!!
         marker = arguments?.getParcelable(getString(R.string.marker))!!
     }
