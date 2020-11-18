@@ -3,7 +3,7 @@ package `in`.getpowerplay.assignment.mvvm
 import `in`.getpowerplay.assignment.source.model.Drawing
 import `in`.getpowerplay.assignment.source.repository.DrawingRepository
 import androidx.essentials.core.injector.KoinComponent.inject
-import androidx.essentials.core.mvvm.ViewModel
+import androidx.essentials.core.lifecycle.ViewModel
 import androidx.essentials.events.Events
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth

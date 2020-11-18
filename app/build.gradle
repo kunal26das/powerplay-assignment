@@ -1,8 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
 
 android {
     compileSdkVersion 30
@@ -54,37 +57,38 @@ dependencies {
 
     // Jetpack
     dependencies {
-        implementation 'androidx.core:core-ktx:1.3.1'
+        implementation 'androidx.core:core-ktx:1.3.2'
         implementation 'androidx.appcompat:appcompat:1.2.0'
         implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
         // Palette
-        implementation 'androidx.palette:palette:1.0.0'
+        implementation 'androidx.palette:palette-ktx:1.0.0'
     }
 
     // Google
     dependencies {
         // Firebase
-        implementation 'com.google.firebase:firebase-auth:19.3.2'
-        implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
-        implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
-        implementation 'com.google.firebase:firebase-crashlytics-ktx:17.2.1'
+        implementation platform('com.google.firebase:firebase-bom:26.1.0')
+        implementation 'com.google.firebase:firebase-auth-ktx'
+        implementation 'com.google.firebase:firebase-storage-ktx'
+        implementation 'com.google.firebase:firebase-analytics-ktx'
+        implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
         // Gson
         implementation 'com.google.code.gson:gson:2.8.6'
 
         // Material Design
-        implementation 'com.google.android.material:material:1.2.0'
+        implementation 'com.google.android.material:material:1.2.1'
     }
 
     // Essentials
     dependencies {
-        implementation 'androidx.essentials:io:1596425581820'
-        implementation 'androidx.essentials:list:1597954788292'
-        implementation 'androidx.essentials:events:1595854371850'
-        implementation 'androidx.essentials:firebase:1597419031842'
-        implementation 'androidx.essentials:backdrop:1597220063305'
-        implementation 'androidx.essentials:resources:1597424018860'
+        implementation 'androidx.essentials:io:1.3.5'
+        implementation 'androidx.essentials:list:1.0.6'
+        implementation 'androidx.essentials:events:1.0.1'
+        implementation 'androidx.essentials:firebase:1.0.1'
+        implementation 'androidx.essentials:backdrop:1.0.1'
+        implementation 'androidx.essentials:resources:1.0.0'
     }
 
     // Facebook
@@ -120,7 +124,7 @@ dependencies {
 
     // Testing
     dependencies {
-        testImplementation 'junit:junit:4.13'
+        testImplementation 'junit:junit:4.13.1'
         androidTestImplementation 'androidx.test.ext:junit:1.1.2'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     }

@@ -38,8 +38,8 @@
                 android:id="@+id/markers"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:item_marginHorizontal="@dimen/margin_global"
-                app:item_marginVertical="@dimen/margin_global"
+                android:clipToPadding="false"
+                android:padding="@dimen/padding_global"
                 tools:listitem="@layout/item_marker" />
         </androidx.essentials.backdrop.BottomSheetView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

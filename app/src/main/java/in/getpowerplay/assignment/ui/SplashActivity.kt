@@ -1,13 +1,14 @@
 package `in`.getpowerplay.assignment.ui
 
 import `in`.getpowerplay.assignment.R
+import `in`.getpowerplay.assignment.databinding.ActivitySplashBinding
 import `in`.getpowerplay.assignment.mvvm.SplashViewModel
 import android.content.Intent
-import androidx.essentials.core.ui.Activity
+import androidx.essentials.core.lifecycle.Activity
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseUser
 
-class SplashActivity : Activity() {
+class SplashActivity : Activity<ActivitySplashBinding>() {
 
     override val layout = R.layout.activity_splash
     override val viewModel by viewModel<SplashViewModel>()

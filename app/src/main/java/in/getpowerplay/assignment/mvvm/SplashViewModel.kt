@@ -1,6 +1,6 @@
 package `in`.getpowerplay.assignment.mvvm
 
-import androidx.essentials.core.mvvm.ViewModel
+import androidx.essentials.core.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 

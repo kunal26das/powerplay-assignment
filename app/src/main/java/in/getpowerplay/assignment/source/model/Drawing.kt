@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Drawing(
+
     var id: String? = null,
 
     @SerializedName("name")

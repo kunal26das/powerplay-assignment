@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.DrawingActivity">
 
-    <in.getpowerplay.assignment.list.Drawings
-        android:id="@+id/drawings"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:item_marginHorizontal="@dimen/margin_global"
-        app:item_marginVertical="@dimen/margin_global"
-        tools:listitem="@layout/item_drawing" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addDrawingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/margin_global"
-        android:src="@drawable/ic_add_24dp"
-        android:tint="@color/colorBackground" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <in.getpowerplay.assignment.list.Drawings
+            android:id="@+id/drawings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/padding_global"
+            tools:listitem="@layout/item_drawing" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addDrawingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_global"
+            android:src="@drawable/ic_add_24dp"
+            android:tint="@color/colorBackground" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

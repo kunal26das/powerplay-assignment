@@ -1,6 +1,7 @@
 package `in`.getpowerplay.assignment.ui
 
 import `in`.getpowerplay.assignment.R
+import `in`.getpowerplay.assignment.databinding.ActivityMarkerBinding
 import `in`.getpowerplay.assignment.mvvm.MarkerViewModel
 import `in`.getpowerplay.assignment.source.model.Drawing
 import `in`.getpowerplay.assignment.source.model.Marker
@@ -11,14 +12,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
-import androidx.essentials.core.ui.Activity
+import androidx.essentials.core.lifecycle.Activity
 import androidx.essentials.events.Events
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
-import kotlinx.android.synthetic.main.activity_marker.*
 
-class MarkerActivity : Activity() {
+class MarkerActivity : Activity<ActivityMarkerBinding>() {
 
     private lateinit var drawing: Drawing
     override val layout = R.layout.activity_marker
@@ -32,8 +32,8 @@ class MarkerActivity : Activity() {
         addMarkerFragment.arguments?.putParcelable(
             getString(R.string.drawing), drawing
         )
-        showMarkersButton.setOnClickListener {
-            markersBottomSheet.expand()
+        binding.showMarkersButton.setOnClickListener {
+            binding.markersBottomSheet.expand()
         }
         loadDrawing()
     }
@@ -43,14 +43,14 @@ class MarkerActivity : Activity() {
             viewModel.getMarkers(drawing)
         }
         viewModel.markers.observe {
-            drawingImage.markers = it?.map {
+            binding.drawingImage.markers = it?.map {
                 PointF(it.x, it.y)
             }?.toMutableList() ?: mutableListOf()
-            markers.submitList(it)
+            binding.markers.submitList(it)
         }
         Events.subscribe(Marker::class.java) {
+            binding.markersBottomSheet.expand()
             viewModel.getMarkers(drawing)
-            markersBottomSheet.expand()
             addMarkerFragment.dismiss()
         }
     }
@@ -60,10 +60,10 @@ class MarkerActivity : Activity() {
             GestureDetector(baseContext, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                     e?.apply {
-                        drawingImage.viewToSourceCoord(e.x, e.y)?.let { center ->
+                        binding.drawingImage.viewToSourceCoord(e.x, e.y)?.let { center ->
                             viewModel.markers.value?.let { markers ->
                                 for (marker in markers) {
-                                    if (drawingImage.isInside(
+                                    if (binding.drawingImage.isInside(
                                             center,
                                             PointF(marker.x, marker.y)
                                         )
@@ -79,7 +79,7 @@ class MarkerActivity : Activity() {
                 }
 
                 override fun onDoubleTap(e: MotionEvent): Boolean {
-                    drawingImage.viewToSourceCoord(e.x, e.y)?.let {
+                    binding.drawingImage.viewToSourceCoord(e.x, e.y)?.let {
                         showAddMarkerFragment(Marker(x = it.x, y = it.y), true)
                     }
                     return true
@@ -88,8 +88,8 @@ class MarkerActivity : Activity() {
 
         Picasso.get().load(drawing.url).into(object : Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                drawingImage.setImage(ImageSource.bitmap(bitmap!!))
-                drawingImage.setOnTouchListener { view, motionEvent ->
+                binding.drawingImage.setImage(ImageSource.bitmap(bitmap!!))
+                binding.drawingImage.setOnTouchListener { view, motionEvent ->
                     view.performClick()
                     gestureDetector.onTouchEvent(motionEvent)
                 }
