@@ -20,5 +20,4 @@
 7. Picasso - Downloading images
 8. [Subsampling Scale Image View](https://github.com/davemorrissey/subsampling-scale-image-view) - Zoom in, zoom out, add markers to drawing
 ## Missing Features
-1. Click on existing marker to see its details in bottom sheet
-2. Show all times in social format
+1. Show all times in social format
